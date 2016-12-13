@@ -69,6 +69,8 @@ public class Lesson2 {
                 "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
     /* YOUR CODE HERE */
+        List<String> list2 = list.stream().filter(s -> s.length()%2 != 0).map(String::toLowerCase).collect(Collectors.toList());
+        System.out.println(list2);
     }
 
     /**
