@@ -1,7 +1,7 @@
-/**
- * Copyright © 2016, Oracle and/or its affiliates. All rights reserved.
- * <p>
- * JDK 8 MOOC Lesson 2 homework
+/*
+  Copyright © 2016, Oracle and/or its affiliates. All rights reserved.
+  <p>
+  JDK 8 MOOC Lesson 2 homework
  */
 package com.miquel.Lesson2;
 
@@ -11,8 +11,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Speakjava (Simon Ritter)
@@ -23,9 +25,9 @@ public class Lesson2 {
     /**
      * Run the exercises to ensure we got the right answers
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
-    public void runExercises() throws IOException {
+    private void runExercises() throws IOException {
         System.out.println("JDK 8 Lambdas and Streams MOOC Lesson 2");
         System.out.println("Running exercise 1 solution...");
         exercise1();
@@ -69,7 +71,7 @@ public class Lesson2 {
                 "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
     /* YOUR CODE HERE */
-        List<String> list2 = list.stream().filter(s -> s.length()%2 != 0).map(String::toLowerCase).collect(Collectors.toList());
+        List<String> list2 = list.stream().filter(s -> s.length() % 2 != 0).map(String::toLowerCase).collect(Collectors.toList());
         System.out.println(list2);
     }
 
@@ -84,6 +86,9 @@ public class Lesson2 {
                 "The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
     /* YOUR CODE HERE */
+        StringBuilder stringBuilder = new StringBuilder();
+        list.stream().skip(2).limit(3).forEach(s -> stringBuilder.append(s).append("-"));
+        System.out.println(stringBuilder.toString());
     }
 
     /**
@@ -93,6 +98,7 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+            System.out.println(reader.lines().count());
         }
     }
 
@@ -106,6 +112,10 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+            System.out.println(reader.lines()
+                    .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                    .distinct()
+                    .collect(Collectors.toList()));
         }
     }
 
@@ -118,6 +128,12 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+            System.out.println(reader.lines()
+                    .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                    .map(String::toLowerCase)
+                    .sorted()
+                    .distinct()
+                    .collect(Collectors.toList()));
         }
     }
 
@@ -128,6 +144,12 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+            System.out.println(reader.lines()
+                    .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                    .map(String::toLowerCase)
+                    .distinct()
+                    .sorted(Comparator.comparingInt(String::length))
+                    .collect(Collectors.toList()));
         }
     }
 
