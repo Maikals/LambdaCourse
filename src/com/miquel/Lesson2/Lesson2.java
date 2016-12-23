@@ -86,9 +86,8 @@ public class Lesson2 {
                 "The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
     /* YOUR CODE HERE */
-        StringBuilder stringBuilder = new StringBuilder();
-        list.stream().skip(2).limit(3).forEach(s -> stringBuilder.append(s).append("-"));
-        System.out.println(stringBuilder.toString());
+        String merged = list.stream().skip(2).limit(3).collect(Collectors.joining("-"));
+        System.out.println(merged);
     }
 
     /**
