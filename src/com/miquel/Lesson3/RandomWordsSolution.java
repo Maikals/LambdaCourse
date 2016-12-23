@@ -3,7 +3,7 @@
  * 
  * JDK 8 MOOC Lesson 3 homework
  */
-package lesson3;
+package com.miquel.Lesson3;
 
 import java.io.BufferedReader;
 import java.io.IOException;

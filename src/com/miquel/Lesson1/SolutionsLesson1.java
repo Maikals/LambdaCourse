@@ -2,7 +2,7 @@
  * Copyright © 2016, Oracle and/or its affiliates. All rights reserved.
  *
  */
-package lesson1;
+package com.miquel.Lesson1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
